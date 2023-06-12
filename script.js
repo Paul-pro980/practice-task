@@ -2,15 +2,15 @@
 
 window.addEventListener('DOMContentLoaded', () =>{
 
-    let myAnswers = document.querySelector('answers'),
-        myQuestion = document.querySelector('question'),
-        counter = document.querySelector('counter'),
+    let myAnswers = document.getElementById('answers'),
+        myQuestion = document.getElementById('question'),
+        counter = document.getElementById('counter'),
         nextBtn = document.getElementById('next-button');
         
 
 let questions = [
     {
-        question : 'sdfsdfsdf',
+        question : 'How?',
         anwswers: [
             {block : '1', correct: false},
             {block : '2', correct: false},
@@ -41,9 +41,11 @@ function startQuiz(){
 }
 
 function showQuestion(){
+    hideQuestion();
     let currentQuestion = questions[currentQuestionIndex];
     let questionNumber = currentQuestionIndex + 1;
-    myQuestion.innerHTML = questionNumber + '. ' + currentQuestion.question;
+    counter.innerHTML = 'Question' + ' ' + questionNumber+ '/4';
+    myQuestion.innerHTML = currentQuestion.question;
 
     currentQuestion.anwswers.forEach(answer => {
         const button = document.createElement('button');
@@ -55,4 +57,10 @@ function showQuestion(){
 
 startQuiz();
 
+function hideQuestion(){
+    nextBtn.style.display = 'none';
+    while(myAnswers.firstChild){
+        myAnswers.removeChild(myAnswers.firstChild);
+    }
+}
 });
