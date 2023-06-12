@@ -39,31 +39,26 @@ body{
     justify-content: center;
     flex-flow: row wrap;
 }
-.button1{
+.btn{
     background-color: blue;
     color: white;
     margin-right: 20px;
     margin-bottom: 30px;
+    border-radius: 10px;
 }
-.button2{
-    background-color: blue;
-    color: white;
-    margin-right: 20px;
-    margin-bottom: 30px;
-}
-.button3{
-    background-color: blue;
-    color: white;
-    margin-right: 20px;
-    margin-bottom: 30px;
-}
-.button4{
-    background-color: blue;
-    color: white;
-    margin-right: 20px;
-    margin-bottom: 30px;
-}
+
 
 .show{
 	display: block;
+}
+
+#next-button{
+    background-color: brown;
+    color: white;
+    width: 150px;
+    border: 0;
+    border-radius: 10px;
+    margin-left: 215px;
+    padding: 10px;
+
 }
