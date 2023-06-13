@@ -2,12 +2,13 @@
 
 window.addEventListener('DOMContentLoaded', () =>{
 
+    //take dom elements
     let myAnswers = document.getElementById('answers'),
         myQuestion = document.getElementById('question'),
         counter = document.getElementById('counter'),
         nextBtn = document.getElementById('next-button');
         
-
+// object initialisation
 let questions = [
     {
         question : 'How?',
@@ -32,7 +33,7 @@ let questions = [
 let currentQuestionIndex = 0,
     score = 0;
     
-
+// selftiteld functions
 function startQuiz(){
     currentQuestionIndex = 0;
     score = 0;
