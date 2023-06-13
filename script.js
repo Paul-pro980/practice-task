@@ -12,7 +12,7 @@ let questions = [
     {
         question : 'How?',
         anwswers: [
-            {block : '1', correct: false},
+            {block : '1', correct: true},
             {block : '2', correct: false},
             {block : '3', correct: true},
             {block : '4', correct: false}, 
@@ -44,7 +44,7 @@ function showQuestion(){
     hideQuestion();
     let currentQuestion = questions[currentQuestionIndex];
     let questionNumber = currentQuestionIndex + 1;
-    counter.innerHTML = 'Question' + ' ' + questionNumber+ '/4';
+    counter.innerHTML = 'Question' + ' ' + questionNumber + '/4';
     myQuestion.innerHTML = currentQuestion.question;
 
     currentQuestion.anwswers.forEach(answer => {
@@ -52,8 +52,12 @@ function showQuestion(){
         button.innerHTML = answer.block;
         button.classList.add('btn');
         myAnswers.appendChild(button);
-    })
-}
+        if(answer.correct){
+            button.dataset.correct = answer.correct;
+        }
+        button.addEventListener('click', selectAnswer)
+    });
+};
 
 startQuiz();
 
@@ -64,3 +68,21 @@ function hideQuestion(){
     }
 }
 });
+
+function selectAnswer(e){
+    const selectBtn = e.target,
+          isCorrect = selectBtn.dataset.correct === 'true';
+    if(isCorrect){
+        selectBtn.classList.add('correct');
+    }else{
+        selectBtn.classList.add('incorrect');
+    }
+    Array.from(myAnswers.firstChild).forEach(button =>{
+        if(button.dataset.correct === 'true'){
+            button.classList.add('correct');
+        }
+        button.disabled = true;
+    });
+    nextBtn.style.display = 'block';
+};
+
