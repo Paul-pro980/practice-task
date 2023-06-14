@@ -5,7 +5,8 @@ window.addEventListener('DOMContentLoaded', () =>{
     let myAnswers = document.getElementById('answers'),
         myQuestion = document.getElementById('question'),
         counter = document.getElementById('counter'),
-        nextBtn = document.getElementById('next-button');
+        nextBtn = document.getElementById('next-button'),
+        restartBtn = document.getElementById('restart');
         
 
  let questions = [
@@ -18,15 +19,17 @@ window.addEventListener('DOMContentLoaded', () =>{
             {block : '4', correct: false}, 
         ]
     },
+
     {
         question : 'ответ 2',
         anwswers: [
-            {block : '5', correct: false},
-            {block : '3', correct: true},
             {block : '1', correct: false},
-            {block : '9', correct: false}, 
+            {block : '2', correct: true},
+            {block : '3', correct: false},
+            {block : '4', correct: false}, 
         ]
     },
+
     {
         question : 'ответ 3',
         anwswers: [
@@ -36,6 +39,7 @@ window.addEventListener('DOMContentLoaded', () =>{
             {block : '4', correct: false}, 
         ]
     },
+
     {
         question : 'ответ 4',
         anwswers: [
@@ -44,7 +48,7 @@ window.addEventListener('DOMContentLoaded', () =>{
             {block : '3', correct: false},
             {block : '4', correct: true}, 
         ]
-    },
+    } 
     ];
 
     let currentQuestionIndex = 0,
@@ -57,7 +61,8 @@ window.addEventListener('DOMContentLoaded', () =>{
         score = 0;
         nextBtn.innerHTML = 'Next';
         showQuestion();
-    }
+    };
+
 
     function showQuestion(){
         hideQuestion();
@@ -79,15 +84,15 @@ window.addEventListener('DOMContentLoaded', () =>{
     };
 
 
-
     function hideQuestion(){
         nextBtn.style.display = 'none';
+        restartBtn.style.display = 'none';
         while(myAnswers.firstChild){
             myAnswers.removeChild(myAnswers.firstChild);
         }
-    }
-   
+    };
 
+   
     function selectAnswer(e){
         const selectBtn = e.target,
             isCorrect = selectBtn.dataset.correct === 'true';
@@ -104,23 +109,31 @@ window.addEventListener('DOMContentLoaded', () =>{
             button.disabled = true;
         });
         nextBtn.style.display = 'block';
-    }
+    };
 
+    
+       
     function showScore(){
         hideQuestion();
+        restartBtn.style.display = 'block';
         myQuestion.innerHTML = `Вы ответили на ${score} из ${questions.length}`;
-    }
+        counter.style.display = 'none';
+    };
 
     function nextButton(){
         currentQuestionIndex++;
         if(currentQuestionIndex < questions.length){
             showQuestion();
         }else showScore();
-    }
+    };
 
     nextBtn.addEventListener('click', () =>{
         if(currentQuestionIndex < questions.length){
             nextButton();
         }else startQuiz();
+    });
+    
+    restartBtn.addEventListener('click', () =>{
+        startQuiz();
     })
 });
