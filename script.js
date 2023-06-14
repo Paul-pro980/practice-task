@@ -117,7 +117,7 @@ window.addEventListener('DOMContentLoaded', () =>{
         hideQuestion();
         restartBtn.style.display = 'block';
         myQuestion.innerHTML = `Вы ответили на ${score} из ${questions.length}`;
-        counter.style.display = 'none';
+        counter.innerHTML = 'Вот ваш результат';
     };
 
     function nextButton(){
