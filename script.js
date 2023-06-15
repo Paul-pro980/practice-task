@@ -30,7 +30,7 @@ window.addEventListener('DOMContentLoaded', () =>{
         ]
     },
 
-    {
+   /* {
         question : 'ответ 3',
         anwswers: [
             {block : '1', correct: false},
@@ -38,7 +38,7 @@ window.addEventListener('DOMContentLoaded', () =>{
             {block : '3', correct: true},
             {block : '4', correct: false}, 
         ]
-    },
+    },*/
 
     {
         question : 'ответ 4',
