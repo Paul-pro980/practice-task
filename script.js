@@ -15,7 +15,7 @@ window.addEventListener('DOMContentLoaded', () =>{
         anwswers: [
             {block : '1', correct: true},
             {block : '2', correct: false},
-            {block : '3', correct: false},
+            {block : '3', correct: true},
             {block : '4', correct: false}, 
         ]
     },
@@ -52,14 +52,13 @@ window.addEventListener('DOMContentLoaded', () =>{
     ];
 
     let currentQuestionIndex = 0,
-    score = 0;
+        score = 0;
 
     startQuiz();  
 
     function startQuiz(){
         currentQuestionIndex = 0;
         score = 0;
-        nextBtn.innerHTML = 'Next';
         showQuestion();
     };
 
@@ -68,7 +67,7 @@ window.addEventListener('DOMContentLoaded', () =>{
         hideQuestion();
         let currentQuestion = questions[currentQuestionIndex];
         let questionNumber = currentQuestionIndex + 1;
-        counter.innerHTML = 'Question' + ' ' + questionNumber + '/4';
+        counter.innerHTML = 'Question' + ' ' + questionNumber + '/' + questions.length;
         myQuestion.innerHTML = currentQuestion.question;
 
         currentQuestion.anwswers.forEach(answer => {
