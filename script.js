@@ -1,5 +1,7 @@
 'strict mode'
 
+
+// create var 
 const myAnswers = document.getElementById('answers'),
       myQuestion = document.getElementById('question'),
       counter = document.getElementById('counter'),
@@ -7,15 +9,16 @@ const myAnswers = document.getElementById('answers'),
       restartBtn = document.getElementById('restart'),
       setTimer = document.getElementById('timer'),
       themeBtn = document.querySelector('#theme');
-    
-
+  
+      
+// create arr with questions
 const questions = [
 {
     question : 'How many planets are in the solar system?',
     anwswers: [
         {block : '8', correct: true},
         {block : '9', correct: false},
-        {block : '10', correct: true},
+        {block : '10', correct: false},
         {block : '7', correct: false}, 
     ]
 },
@@ -50,13 +53,14 @@ const questions = [
 } 
 ];
 
+
 let currentQuestionIndex = 0,
     score = 0,
     timeCounter,
     timeValue = 5;
 
 
-
+//timer function 
 function countDown(time){
     timeCounter = setInterval(timer, 1000);
     function timer(){
@@ -70,13 +74,13 @@ function countDown(time){
                 }
                 button.disabled = true;
             });
-            nextBtn.style.display = 'block';  
+            nextBtn.style.display = 'block'; 
         }
     }
 
 };
 
-
+// there selftiteld functions(they are names are reflect what they do)
 function startQuiz(){
     currentQuestionIndex = 0;
     score = 0;
@@ -137,8 +141,11 @@ function selectAnswer(e){
     
 function showScore(){
     hideBtns();
+    showStorage();
+    clearInterval(timeCounter);
     setTimer.disabled = true;
     setTimer.style.display = 'none';
+    nextBtn.style.display = 'none'; 
     restartBtn.style.display = 'block';
     myQuestion.innerHTML = `Вы ответили на ${score} из ${questions.length}`;
     counter.innerHTML = 'Вот ваш результат';
@@ -165,8 +172,30 @@ restartBtn.addEventListener('click', () =>{
 })
 
 
+// switch themes
 themeBtn.onclick = function(){
     document.body.classList.toggle('changeMode');
 }
+
+
+//start of making localStorage
+function showStorage(){
+    let storageScore = score;
+    let saveScore = {
+        score: storageScore
+    }
+    localStorage.setItem('score', JSON.stringify(storageScore));
+    let takescore = localStorage.getItem('score');
+
+    for(let i = 0; i < 5; i++){
+        if(takescore){
+            saveScore[takescore];
+        }
+        i++;
+    }
+    console.log(takescore);
+
+}
+
 
 startQuiz(); 
