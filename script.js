@@ -240,7 +240,7 @@ function localStorageListener(){
             savedScores = savedScores.slice(-5); 
         }
     } else {
-        savedScores = [newScore]; 
+        savedScores = [ScoreCtorage]; 
     }
   localStorage.setItem("scores", JSON.stringify(savedScores));
 
