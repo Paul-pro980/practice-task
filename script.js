@@ -8,6 +8,7 @@ const myAnswers = document.getElementById('answers'),
       nextBtn = document.getElementById('next-button'),
       restartBtn = document.getElementById('restart'),
       setTimer = document.getElementById('timer'),
+      scoreModal = document.getElementById('scoreStorage');
       themeBtn = document.querySelector('#theme');
   
       
@@ -114,6 +115,7 @@ function hideBtns(){
     setTimer.style.display = 'block';
     nextBtn.style.display = 'none';
     restartBtn.style.display = 'none';
+    scoreModal.style.display = 'none';
     while(myAnswers.firstChild){
         myAnswers.removeChild(myAnswers.firstChild);
     }
@@ -141,14 +143,16 @@ function selectAnswer(e){
     
 function showScore(){
     hideBtns();
-    showStorage();
+    localStorageListener();
     clearInterval(timeCounter);
     setTimer.disabled = true;
     setTimer.style.display = 'none';
     nextBtn.style.display = 'none'; 
     restartBtn.style.display = 'block';
+    scoreModal.style.display = 'block';
     myQuestion.innerHTML = `Вы ответили на ${score} из ${questions.length}`;
     counter.innerHTML = 'Вот ваш результат';
+    scoreModal.addEventListener('click', openModal)
 };
 
 
@@ -178,23 +182,80 @@ themeBtn.onclick = function(){
 }
 
 
+//storage window
+const modalTrigger = document.querySelector('scoreStorage'),
+      modalTab = document.querySelector('.storage'),
+      closeModal = document.querySelector('[data-close]');
+
+function openModal(){
+    modalTab.classList.add('show');
+    document.body.style.overflow = 'hidden';
+};
+
+function CloseModal(){
+    modalTab.classList.remove('show');
+    document.body.style.overflow = '';
+};
+
+closeModal.addEventListener('click', CloseModal)
+
+modalTab.addEventListener('click', (e) => {
+    if (e.target === modalTab){
+        CloseModal();
+    };
+});
+
+document.addEventListener('keydown', (e) => {
+    if(e.code === 'Escape' && modalTab.classList.contains('show')){
+        CloseModal();
+    };
+});
+
+
 //start of making localStorage
-function showStorage(){
-    let storageScore = score;
-    let saveScore = {
-        score: storageScore
-    }
-    localStorage.setItem('score', JSON.stringify(storageScore));
-    let takescore = localStorage.getItem('score');
+function localStorageListener(){
 
-    for(let i = 0; i < 5; i++){
-        if(takescore){
-            saveScore[takescore];
+    /* let actualScore = [];
+    const existingScore = localStorage.getItem('score');
+    if (existingScore) {
+        actualScore = JSON.parse(existingScore);
+    }
+    actualScore.push(score);
+    localStorage.setItem('score', JSON.stringify(actualScore));
+    //console.log(actualScore);
+
+    showStorage(existingScore); */
+
+    let actualScore = score;
+
+    let ScoreCtorage = {
+      score: actualScore,
+    };
+
+    let savedScores = localStorage.getItem("scores");
+    if (savedScores) {
+        savedScores = JSON.parse(savedScores);
+        savedScores.push(ScoreCtorage); 
+        if (savedScores.length > 5) {
+            savedScores = savedScores.slice(-5); 
         }
-        i++;
+    } else {
+        savedScores = [newScore]; 
     }
-    console.log(takescore);
+  localStorage.setItem("scores", JSON.stringify(savedScores));
 
+  showStorage(savedScores);
+}
+
+function showStorage(resaults){
+        let scoreList = document.getElementById("scores");
+        scoreList.innerHTML = "";
+      
+        resaults.forEach(function(item) {
+            let listItem = document.createElement("li");
+            listItem.innerText = `Your score is - ${item.score}`;
+            scoreList.appendChild(listItem);
+        });
 }
 
 
