@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>quiz</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="asd.css">
 </head>
 <body>
    
@@ -19,9 +19,18 @@
             <button id="next-button">Next</button>
             <button id="restart">Restart </button>
         </div>
-        <button id="theme"> Тема </button>
+        <button id="scoreStorage">Show my score</button>
+        <button id="theme"> Theme </button>
     </div>
-
+    <div class="storage">
+        <div class="storage__dialog">
+            <div class="storage__content">
+                <div data-close class="storage__close">x</div>
+                <div class="storage__title">Your resaults:</div>
+                <div id="scores"></div>
+            </div>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
