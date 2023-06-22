@@ -4,17 +4,17 @@ body{
 
 
 :root{
-    --first-color: white;
-    --second-color: blue;
-    --third-color:  brown;
-    --fouth-color: aqua;
+    --first-color: #e5dee5;
+    --second-color: #7c3b30;
+    --third-color:  #31130e;
+    --fouth-color: #816c6e;
 }
 
 .changeMode{
-    --first-color:burlywood;
-    --second-color: coral;
-    --third-color:black;
-    --fouth-color: purple;
+    --first-color:#cdcdcd;
+    --second-color: #edc3ca;
+    --third-color:#48494a;
+    --fouth-color: #272727;
 }
 
 .container{
@@ -69,7 +69,7 @@ body{
 	display: block;
 }
 
-#next-button{
+.next-btn{
     background-color: var(--third-color);
     color: white;
     width: 150px;
@@ -88,7 +88,7 @@ body{
     background: red;
 }
 
-#restart{
+.restart1{
     background-color: green;
     color: white;
     width: 150px;
@@ -159,3 +159,41 @@ body{
 	font-size: 22px;
 	text-transform: uppercase
 }
+
+
+@media screen and (max-width: 768px) {
+
+    .container{
+        width: 300px;
+    }
+
+    #counter{
+        padding: auto;
+    }
+
+    .content{
+        width: auto;
+    }
+
+    .restart1{
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .next-btn{
+        margin-left: auto;
+        margin-right: auto; 
+    }
+
+    .storage{
+        padding: 30%;
+        /* margin-left: auto;
+        margin-right: auto;  */
+    }
+
+    .storage__content{
+        width: 100px;
+        text-align: center;
+    }
+}
+
