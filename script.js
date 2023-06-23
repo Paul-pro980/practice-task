@@ -1,6 +1,7 @@
 'strict mode'
 
 
+
 // create var 
 const myAnswers = document.getElementById('answers'),
       myQuestion = document.getElementById('question'),
@@ -8,7 +9,7 @@ const myAnswers = document.getElementById('answers'),
       nextBtn = document.getElementById('next-button'),
       restartBtn = document.getElementById('restart'),
       setTimer = document.getElementById('timer'),
-      scoreModal = document.getElementById('scoreStorage');
+      scoreModal = document.getElementById('scoreStorage'),
       themeBtn = document.querySelector('#theme');
   
       
@@ -58,6 +59,7 @@ const questions = [
 let currentQuestionIndex = 0,
     score = 0,
     timeCounter,
+    time = 0,
     timeValue = 5;
 
 
@@ -81,6 +83,7 @@ function countDown(time){
 
 };
 
+
 // there selftiteld functions(they are names are reflect what they do)
 function startQuiz(){
     currentQuestionIndex = 0;
@@ -93,8 +96,8 @@ function showQuestion(){
     hideBtns();
     clearInterval(timeCounter)
     countDown(timeValue);
-    let currentQuestion = questions[currentQuestionIndex];
-    let questionNumber = currentQuestionIndex + 1;
+    const currentQuestion = questions[currentQuestionIndex],
+          questionNumber = currentQuestionIndex + 1;
     counter.innerHTML = 'Question' + ' ' + questionNumber + '/' + questions.length;
     myQuestion.innerHTML = currentQuestion.question;
 
@@ -121,8 +124,9 @@ function hideBtns(){
     }
 };
 
+import selectAnswer from "./helpers/functions.js";
 
-function selectAnswer(e){
+/* function selectAnswer(e){
     const selectBtn = e.target,
           isCorrect = selectBtn.dataset.correct === 'true';
     if(isCorrect){
@@ -138,7 +142,7 @@ function selectAnswer(e){
         button.disabled = true;
     });
     nextBtn.style.display = 'block';
-};
+}; */
 
     
 function showScore(){
@@ -177,37 +181,38 @@ restartBtn.addEventListener('click', () =>{
 
 
 // switch themes
-themeBtn.onclick = function(){
-    document.body.classList.toggle('changeMode');
-}
 
+themeBtn.addEventListener('click', () => {
+    document.body.classList.toggle('changeMode');
+});
 
 //storage window
 const modalTrigger = document.querySelector('scoreStorage'),
       modalTab = document.querySelector('.storage'),
       closeModal = document.querySelector('[data-close]');
 
+
 function openModal(){
     modalTab.classList.add('show');
     document.body.style.overflow = 'hidden';
 };
 
-function CloseModal(){
+function closeModalTab(){
     modalTab.classList.remove('show');
     document.body.style.overflow = '';
 };
 
-closeModal.addEventListener('click', CloseModal)
+closeModal.addEventListener('click', closeModalTab)
 
 modalTab.addEventListener('click', (e) => {
     if (e.target === modalTab){
-        CloseModal();
+        closeModalTab();
     };
 });
 
 document.addEventListener('keydown', (e) => {
     if(e.code === 'Escape' && modalTab.classList.contains('show')){
-        CloseModal();
+        closeModalTab();
     };
 });
 
