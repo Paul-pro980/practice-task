@@ -65,7 +65,7 @@ let currentQuestionIndex = 0,
 function countDown(time){
     timeCounter = setInterval(timer, 1000);
     function timer(){
-        setTimer.textContent = time;
+        setTimer.textContent = 'Time left:' + ' ' + time;
         time--;
         if(time < 0){
             clearInterval(timeCounter);
