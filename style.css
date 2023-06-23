@@ -102,7 +102,7 @@ body{
     background-color: chocolate;
 }
 
-#timer{
+.Timer{
     width: 50;
     margin-left: 500px;
 }
@@ -170,6 +170,10 @@ body{
 
     .content{
         width: auto;
+    }
+
+    .Timer{
+    margin-left: 90%;
     }
 
     .restart1{
