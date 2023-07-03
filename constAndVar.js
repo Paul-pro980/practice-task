@@ -50,13 +50,12 @@ export const questions = [
 ];
 
 
-export const variables = {
-    currentQuestionIndex: 0,
-    score: 0,
-    timeCounter: 0,
-    time: 0,
-    timeValue: 5
-};
+ export const variables = {
+            currentQuestionIndex: 0,
+            score: 0,
+            timeCounter: 0,
+            timeValue: 5
+        };
 
 
 export const modalTab = document.querySelector('.storage'),
