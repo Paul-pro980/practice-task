@@ -1,10 +1,9 @@
-import { myAnswers, variables, nextBtn, setTimer } from "../constAndVar.js";
+import { myAnswers, variables, nextBtn, setTimer } from "./constAndVar.js";
+
 
 export function selectAnswer(e){
     const selectBtn = e.target,
           isCorrect = selectBtn.dataset.correct === 'true';
-    console.log(e);
-    console.log(isCorrect);
     if(isCorrect){
         selectBtn.classList.add('correct');
         variables.score++;
@@ -23,7 +22,7 @@ export function selectAnswer(e){
 export function countDown(time) {
     variables.timeCounter = setInterval(timer, 1000);
     function timer() {
-        setTimer.textContent = 'Time left:' + ' ' + variables.time;
+        setTimer.textContent = `Time left: ${time}`;
         time--;
         if (time < 0) {
             clearInterval(variables.timeCounter);
@@ -40,9 +39,9 @@ export function countDown(time) {
 };
 
 export function localStorageListener() {
-    let actualScore = variables.score;
+    const actualScore = variables.score;
 
-    let ScoreCtorage = {
+    const ScoreCtorage = {
         score: actualScore,
     };
 
@@ -62,11 +61,11 @@ export function localStorageListener() {
 }
 
 export function showStorage(resaults) {
-    let scoreList = document.getElementById("scores");
+    const scoreList = document.getElementById("scores");
     scoreList.innerHTML = "";
 
     resaults.forEach(function (item) {
-        let listItem = document.createElement("li");
+        const listItem = document.createElement("li");
         listItem.innerText = `Your score is - ${item.score}`;
         scoreList.appendChild(listItem);
     });
