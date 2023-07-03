@@ -3,7 +3,6 @@
 import { selectAnswer, countDown, localStorageListener } from "./function.js";
 import { myAnswers, myQuestion, counter, nextBtn, restartBtn, setTimer, scoreModal, themeBtn, questions, variables, modalTab, closeModal } from "./constAndVar.js";
 
-
 function startQuiz() {
     variables.currentQuestionIndex = 0;
     variables.score = 0;
@@ -17,7 +16,7 @@ function showQuestion() {
     countDown(variables.timeValue);
     const currentQuestion = questions[variables.currentQuestionIndex],
         questionNumber = variables.currentQuestionIndex + 1;
-    counter.innerHTML = 'Question' + ' ' + questionNumber + '/' + questions.length;
+    counter.innerHTML = `Question ${questionNumber} /${questions.length}`;
     myQuestion.innerHTML = currentQuestion.question;
 
     currentQuestion.anwswers.forEach(answer => {
@@ -79,19 +78,16 @@ restartBtn.addEventListener('click', () => {
 })
 
 
-// switch themes
-
 themeBtn.addEventListener('click', () => {
     document.body.classList.toggle('changeMode');
 });
-
-//storage window
 
 
 function openModal() {
     modalTab.classList.add('show');
     document.body.style.overflow = 'hidden';
 };
+
 
 function closeModalTab() {
     modalTab.classList.remove('show');
